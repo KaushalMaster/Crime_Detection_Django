@@ -1,7 +1,12 @@
 from django.shortcuts import render
+from django.shortcuts import render
 import pyrebase
 from datetime import datetime as d
-# Create your views here.
+import firebase_admin
+from firebase_admin import credentials
+from firebase_admin import db
+
+
 config = {
     "apiKey": "AIzaSyAcv7rjtb0TPvaMoRdeqSlUUpiyjjNbioY",
     "authDomain": "realtime-crime-detection-773bc.firebaseapp.com",
@@ -40,5 +45,35 @@ def register_complaint(request):
         phone = request.POST.get('Phone')
         date = d.now()
         print(full_name, complain_type, complain_description, phone, date)
+
+        # Initialize Firebase app with credentials
+        cred = credentials.Certificate('static/json/serviceAccountKey.json')
+        firebase_admin.initialize_app(cred, {
+            'databaseURL': 'https://realtime-crime-detection-773bc-default-rtdb.firebaseio.com'
+        })
+
+        # Get a reference to the database service
+        ref = db.reference()
+
+        # Define the data to be inserted
+        data = {
+            'full_name': full_name,
+            'complain_type': complain_type,
+            'complain_description': complain_description,
+            'phone': phone,
+            'date': date
+        }
+
+        # Push the data to the database
+        new_data_ref = ref.child('Crime_reports').push(data)
+
+        # Print the newly generated unique key for the data
+        print(new_data_ref.key)
+
+        # Return a response
+        return render(request, 'index.html')
+    else:
+        # Render the form
+        return render(request, 'RegisterComplain.html')
 
     return render(request, 'RegisterComplain.html')
