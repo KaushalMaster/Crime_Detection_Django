@@ -1,0 +1,13 @@
+* {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+#complain_lbl_type {
+  display: flex;
+  justify-content: space-between;
+  max-width: 640px;
+}
+
+.lbl_value {
+  width: 100%;
+}

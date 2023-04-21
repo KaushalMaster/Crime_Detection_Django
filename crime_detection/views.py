@@ -17,11 +17,19 @@ database = firebase.database()
 
 
 def index(request):
+    return render(request, 'index.html')
+
+
+def result(request):
     Lattitude = database.child('Cordinates').child('Lattitude').get().val()
     Longitude = database.child('Cordinates').child('Longitude').get().val()
     Accuracy = database.child('Cordinates').child('Accuracy').get().val()
-    return render(request, 'index.html', {
+    return render(request, 'result.html', {
         "Lattitude": Lattitude,
         "Longitude": Longitude,
         "Accuracy": Accuracy
     })
+
+
+def register_complaint(request):
+    return render(request, 'RegisterComplain.html')
