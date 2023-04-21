@@ -29,7 +29,7 @@
                   />
                 </a>
               </div>
-              <form action="{% url 'index' %}" method="POST">
+              <form action="{% url 'register_complaint' %}" method="POST">
                 <div class="mb-6">
                   {% csrf_token %}
                   <input
@@ -57,14 +57,14 @@
                     name="Complain_Type"
                     class="w-full rounded-md border bordder-[#E9EDF4] py-3 px-5 bg-[#FCFDFE] text-base text-body-color placeholder-[#ACB6BE] outline-none focus-visible:shadow-none focus:border-primary"
                   >
-                    <option value="Sizzling Brownie">Murder</option>
-                    <option value="Wallnut Brownie">Mental Harrasment</option>
-                    <option value="Without Wallnut Brownie">Theft</option>
-                    <option value="Ice-cream">Other</option>
+                    <option value="Murder">Murder</option>
+                    <option value="Mental Harrasment">Mental Harrasment</option>
+                    <option value="Theft">Theft</option>
+                    <option value="Other">Other</option>
                   </select>
                 </div>
                 <div class="mb-6" class="complain">
-                  <label for="complain_description" >Complain_Description</label>
+                  <label for="complain_description">Complain_Description</label>
                   <textarea
                     name="complain_description"
                     id="complain_description"

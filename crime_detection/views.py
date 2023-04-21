@@ -1,5 +1,6 @@
 from django.shortcuts import render
 import pyrebase
+from datetime import datetime as d
 # Create your views here.
 config = {
     "apiKey": "AIzaSyAcv7rjtb0TPvaMoRdeqSlUUpiyjjNbioY",
@@ -32,4 +33,12 @@ def result(request):
 
 
 def register_complaint(request):
+    if request.method == 'POST':
+        full_name = request.POST.get('fullname')
+        complain_type = request.POST.get('Complain_Type')
+        complain_description = request.POST.get('complain_description')
+        phone = request.POST.get('Phone')
+        date = d.now()
+        print(full_name, complain_type, complain_description, phone, date)
+
     return render(request, 'RegisterComplain.html')
