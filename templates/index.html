@@ -54,6 +54,14 @@
     <div class="container">
       <button class="sos" onclick="getPosition()">GET SOS</button>
       <button class="report_realtime">REPORT Crime</button>
+      <a href="{% url 'register_complaint' %}">Report Crime</a>
+
+      <!-- <form action="#" method="POST">
+        {% csrf_token %}
+        <input type="number" name="lattitude" id="lattitude" hidden />
+        <input type="number" name="longitude" id="longitude" hidden />
+        <input type="number" name="accuracy" id="accuracy" hidden />
+      </form> -->
     </div>
 
     <div id="map"></div>
@@ -92,6 +100,25 @@
           var lat = position.coords.latitude;
           var lng = position.coords.longitude;
           var accuracy = position.coords.accuracy;
+
+          // var lattitude = document.getElementById("lattitude");
+          // var longitude = document.getElementById("longitude");
+          // var accuracy = document.getElementById("accuracy");
+
+          // lattitude.value = lat;
+          // longitude.value = lng;
+          // accuracy.value = accuracy;
+
+          var xhr = new XMLHttpRequest();
+          xhr.open("POST", "/");
+          xhr.setRequestHeader("Content-Type", "application/json");
+          xhr.send(
+            JSON.stringify({
+              lattitude: lat,
+              longitude: lng,
+              accuracy: accuracy,
+            })
+          );
 
           if (marker) {
             map.removeLayer(marker);

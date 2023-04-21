@@ -5,7 +5,9 @@ from datetime import datetime as d
 import firebase_admin
 from firebase_admin import credentials
 from firebase_admin import db
-
+import json
+from django.core.serializers.json import DjangoJSONEncoder
+from django.http import HttpResponse
 
 config = {
     "apiKey": "AIzaSyAcv7rjtb0TPvaMoRdeqSlUUpiyjjNbioY",
@@ -23,6 +25,24 @@ database = firebase.database()
 
 
 def index(request):
+    if request.method == "POST":
+        data = json.loads(request.body)
+        lattitude = data.get("lattitude")
+        longitude = data.get("longitude")
+        accuracy = data.get("accuracy")
+        print(lattitude)
+        print(longitude)
+        print(accuracy)
+        # Do something with the variable data
+        return HttpResponse(status=200)
+
+    # if request.method == "POST":
+    #     lattitude = request.POST.get('lattitude')
+    #     longitude = request.POST.get('longitude')
+    #     accuracy = request.POST.get('accuracy')
+    #     print(lattitude)
+    #     print(longitude)
+    #     print(accuracy)
     return render(request, 'index.html')
 
 
@@ -43,11 +63,12 @@ def register_complaint(request):
         complain_type = request.POST.get('Complain_Type')
         complain_description = request.POST.get('complain_description')
         phone = request.POST.get('Phone')
-        date = d.now()
+        date = json.dumps(d.now(), cls=DjangoJSONEncoder)
         print(full_name, complain_type, complain_description, phone, date)
 
         # Initialize Firebase app with credentials
-        cred = credentials.Certificate('static/json/serviceAccountKey.json')
+        cred = credentials.Certificate(
+            'static\css\json\serviceAccountKey.json')
         firebase_admin.initialize_app(cred, {
             'databaseURL': 'https://realtime-crime-detection-773bc-default-rtdb.firebaseio.com'
         })
