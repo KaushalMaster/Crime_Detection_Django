@@ -1,0 +1,11 @@
+{
+  "Crime_reports": {
+    "-NTZZbNsqeQB692nqtZ_": {
+      "complain_description": "testtest",
+      "complain_type": "Murder",
+      "date": "\"2023-04-21T21:37:53.075\"",
+      "full_name": "test",
+      "phone": "1234567890"
+    }
+  }
+}

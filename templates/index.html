@@ -109,16 +109,30 @@
           // longitude.value = lng;
           // accuracy.value = accuracy;
 
-          var xhr = new XMLHttpRequest();
-          xhr.open("POST", "/");
-          xhr.setRequestHeader("Content-Type", "application/json");
-          xhr.send(
-            JSON.stringify({
-              lattitude: lat,
-              longitude: lng,
-              accuracy: accuracy,
-            })
-          );
+          // var xhr = new XMLHttpRequest();
+          // xhr.open("POST", "/");
+          // xhr.setRequestHeader("Content-Type", "application/json");
+          // xhr.send(
+          //   JSON.stringify({
+          //     lattitude: lat,
+          //     longitude: lng,
+          //     accuracy: accuracy,
+          //   })
+          // );
+
+          // $.ajax({
+          //   type: "POST",
+          //   url: "/index",
+          //   data: {
+          //     lattitude: lat,
+          //     longitude: lng,
+          //     accuracy: accuracy,
+          //     csrfmiddlewaretoken: "{{ csrf_token }}",
+          //   },
+          //   success: function (data) {
+          //     console.log("Data sent successfully.");
+          //   },
+          // });
 
           if (marker) {
             map.removeLayer(marker);
