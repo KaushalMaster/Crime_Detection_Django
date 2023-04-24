@@ -16,16 +16,10 @@
         <th>Complain By</th>
         <th>Contact</th>
       </tr>
-      {% for complain in my_data %}
       <tr>
-        <td>{{ complain.id }}</td>
-        <td>{{ complain.description }}</td>
-        <td>{{ complain.type }}</td>
-        <td>{{ complain.date }}</td>
-        <td>{{ complain.name }}</td>
-        <td>{{ complain.phone }}</td>
+        {{mydata.id}} {{mydata.description}} {{mydata.type}} {{mydata.date}}
+        {{mydata.name}} {{mydata.phone}}
       </tr>
-      {% endfor %}
     </table>
   </body>
 </html>

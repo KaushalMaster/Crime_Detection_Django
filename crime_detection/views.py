@@ -154,7 +154,7 @@ def myadmin(request):
     for key, val in snapshot.items():
         data.append(dict(val))
 
-    print(data)
+    # print(data[0])
 
     complain_description = data[0]['complain_description']
     complain_type = data[0]['complain_type']
@@ -163,23 +163,27 @@ def myadmin(request):
     complain_by_phone = data[0]['phone']
 
     # last try
-    credentials = service_account.Credentials.from_service_account_file(
-        "static\css\json\serviceAccountKey.json"
-    )
+    # credentials = service_account.Credentials.from_service_account_file(
+    #     "static\css\json\serviceAccountKey.json"
+    # )
 
-    access_token_info = credentials.fetch_oauth2_token()
-    access_token = access_token_info["access_token"]
+    # access_token_info = credentials.fetch_oauth2_token()
+    # access_token = access_token_info["access_token"]
 
-    response = requests.get(
-        "https://https://realtime-crime-detection-773bc-default-rtdb.firebaseio.com/static\css\json\serviceAccountKey.json?auth=" + access_token
-    )
+    # response = requests.get(
+    #     "https://https://realtime-crime-detection-773bc-default-rtdb.firebaseio.com/static\css\json\serviceAccountKey.json?auth=" + access_token
+    # )
 
-    print(response)
+    # print(complain_type)
     # complaints = data
-    return render(request, 'Admin.html', {
-        'descripxtion': complain_description,
+
+    mydata = {
+        'description': complain_description,
         'type': complain_type,
         'date': complain_date,
         'name': complain_by_name,
         'phone': complain_by_phone
-    })
+    }
+
+    print(mydata)
+    return render(request, 'Admin.html', context={'mydata': mydata})
