@@ -17,7 +17,7 @@
         <th>Complain By</th>
         <th>Contact</th>
       </tr>
-      <tr>
+      <!-- <tr>
         <td>{{mydata.id}}</td>
         <td>{{mydata.description}}</td>
         <td>{{mydata.date}}</td>
@@ -25,19 +25,21 @@
         <td>{{mydata.name}}</td>
         <td>{{mydata.phone}}</td>
       </tr>
-    </table>
+    </table> -->
 
-    <table>
+    <!-- <table> -->
+       {% for data in mydata %}
       <tr>
-        {% for data in context %}
+       
         <td>{{data.id}}</td>
         <td>{{data.description}}</td>
         <td>{{data.date}}</td>
         <td>{{data.type}}</td>
         <td>{{data.name}}</td>
         <td>{{data.phone}}</td>
-        {% endfor %}
+        
       </tr>
+      {% endfor %}
     </table>
   </body>
 </html>

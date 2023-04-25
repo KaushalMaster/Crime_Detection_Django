@@ -100,29 +100,34 @@ def myadmin(request):
     # converting list to dictionary
     data = []
     snapshot = ref.child('Crime_reports').get()
+
     for key, val in snapshot.items():
         data.append(dict(val))
 
-    # print(data[0])
+
 
     # getting the id of the first element
     ref_one = db.reference('Crime_reports').get()
-    data_id = list(ref_one.keys())[0]
+    data_id = list(ref_one.keys())
 
-    complain_description = data[0]['complain_description']
-    complain_type = data[0]['complain_type']
-    complain_date = data[0]['date']
-    complain_by_name = data[0]['full_name']
-    complain_by_phone = data[0]['phone']
+    complain_description,complain_type,complain_date ,complain_by_name,complain_by_phone=[],[],[],[],[]
+    
+    for d in range(len(data)):
+        complain_description.append(data[d]['complain_description'])
+        complain_type.append(data[d]['complain_type'])
+        complain_date.append(data[d]['date'])
+        complain_by_name.append(data[d]['full_name'])
+        complain_by_phone.append(data[d]['phone'])
 
-    mydata = {
-        'id': data_id,
-        'description': complain_description,
-        'type': complain_type,
-        'date': complain_date,
-        'name': complain_by_name,
-        'phone': complain_by_phone
-    }
+    
+    mydata = [{
+        'id': data_id[i],
+        'description': complain_description[i],
+        'type': complain_type[i],
+        'date': complain_date[i],
+        'name': complain_by_name[i],
+        'phone': complain_by_phone[i]
+    } for i in range (len(data_id)) ]
 
     print(mydata)
     return render(request, 'Admin.html', context={'mydata': mydata})
