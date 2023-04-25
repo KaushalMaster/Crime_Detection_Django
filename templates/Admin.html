@@ -8,17 +8,35 @@
   </head>
   <body>
     <h1>Registered Complains</h1>
-    <table>
+    <table border="1px">
       <tr>
         <th>Complain ID</th>
         <th>Complain Description</th>
         <th>Complain Date</th>
+        <th>Complain Type</th>
         <th>Complain By</th>
         <th>Contact</th>
       </tr>
       <tr>
-        {{mydata.id}} {{mydata.description}} {{mydata.type}} {{mydata.date}}
-        {{mydata.name}} {{mydata.phone}}
+        <td>{{mydata.id}}</td>
+        <td>{{mydata.description}}</td>
+        <td>{{mydata.date}}</td>
+        <td>{{mydata.type}}</td>
+        <td>{{mydata.name}}</td>
+        <td>{{mydata.phone}}</td>
+      </tr>
+    </table>
+
+    <table>
+      <tr>
+        {% for data in context %}
+        <td>{{data.id}}</td>
+        <td>{{data.description}}</td>
+        <td>{{data.date}}</td>
+        <td>{{data.type}}</td>
+        <td>{{data.name}}</td>
+        <td>{{data.phone}}</td>
+        {% endfor %}
       </tr>
     </table>
   </body>
