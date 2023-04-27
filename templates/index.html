@@ -53,8 +53,9 @@
   <body>
     <div class="container">
       <button class="sos" onclick="getPosition()">GET SOS</button>
-      <button class="report_realtime">REPORT Crime</button>
-      <a href="{% url 'register_complaint' %}">Report Crime</a>
+      <button class="report_realtime">
+        <a href="{% url 'register_complaint' %}">Report Crime</a>
+      </button>
 
       <!-- <form action="#" method="POST">
         {% csrf_token %}
@@ -122,7 +123,7 @@
 
           // $.ajax({
           //   type: "POST",
-          //   url: "/index",
+          //   url: "{% url 'index' %}",
           //   data: {
           //     lattitude: lat,
           //     longitude: lng,
