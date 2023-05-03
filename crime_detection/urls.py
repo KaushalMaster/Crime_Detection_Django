@@ -1,5 +1,7 @@
 from django.urls import path
 from . import views
+# import requests.packages.urllib3.contrib.appengine as contrib_appengine
+# from OpenSSL import rand
 
 urlpatterns = [
     path('', views.index, name='index'),
